@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Skydash Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'css/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'css/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css">
+
+  <style>
+    .form{
+        /* display: flex !important; */
+        border: solid 1px ;
+        border-radius: 5px;
+        background-color: rgba(29, 29, 99, 0.642);
+    }
+    .div-form{
+      margin: 25px;
+      margin-right: 0px !important;
+      width: 500px;
+    }
+
+    .div-form1{
+      margin: 25px;
+      margin-left: 0px !important;
+      width: 500px;
+    }
+
+    .div-container{
+      display: flex;
+    }
+
+    button a{
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    {% include 'GestionNav.html' %}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      
+      
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Reservations</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">{{user.username}}</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href=""> Profil </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> Logout </a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Chambres</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth1">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'chambre' %}"> Consulter les chambres </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'AjoutChambre' %}"> Ajouter une chambre </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-bed-empty menu-icon"></i>
+              <span class="menu-title">Chambres</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="menu-icon mdi mdi-tools"></i>
+              <span class="menu-title">Infrastructures d'hotel</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+
+
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+
+
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Welcome {{user.username}}</h3>
+                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                </div>
+
+
+                <div class="col-12 col-xl-4">
+                  <div class="justify-content-end d-flex">
+                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                      <button class="btn btn-sm btn-light bg-white " type="button" id="dropdownMenuDate2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i class="mdi mdi-calendar"></i> Today (<span id="current-date"></span>)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {% block main-content %}
+          
+          {% endblock main-content %}
+       </div>
+        <!-- content-wrapper ends -->
+
+
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <script>
+    const currentDate = new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+    document.getElementById('current-date').textContent = currentDate;
+
+    // Get user's current location using browser's geolocation API
+      navigator.geolocation.getCurrentPosition(position => {
+        const { latitude, longitude } = position.coords;
+
+        // Use a reverse geocoding API to get the location information from the coordinates
+        const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            // Extract the country and city information from the API response
+            const { principalSubdivision, city } = data;
+
+            // Display the country and city information in the HTML
+            document.getElementById('country').textContent = principalSubdivision;
+            document.getElementById('city').textContent = city;
+          })
+          .catch(error => console.error(error));
+      }, error => console.error(error));
+  </script>
+  <!-- plugins:js -->
+  <script src="{% static 'css/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'css/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'css/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'css/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+
