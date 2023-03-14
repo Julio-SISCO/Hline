@@ -6,12 +6,12 @@ from django.contrib.auth import views as auth_view
 
 
 urlpatterns = [
-    path('chambre', views.chambre, name='chambre'),
-    path("chambre_equip", views.hotel_equip, name='chambre_equip'),
-    path('chambre_image', views.hotel_image, name='chambre_image'),
-    path("", views.hotel, name='hotel'),
-    path("hotel_equip", views.hotel_equip, name='hotel_equip'),
-    path('hotel_image', views.hotel_image, name='hotel_image'),
+    path('chambre', views.ChambreView.as_view, name='chambre'),
+    path("chambre_equip/<hotel>/<chambre>/",views.ChambreEquipementView.as_view(), name='chambre_equip'),
+    path('chambre_image/<hotel>/<chambre>/', views.HotelImageView.as_view, name='chambre_image'),
+    path("hotel", views.HotelView.as_view(), name='hotel'),
+    path("hotel_equip/<hotel>/", views.HotelEquipementView.as_view(), name='hotel_equip'),
+    path('hotel_image/<hotel>/', views.HotelImageView.as_view(), name='hotel_image'),
 
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
