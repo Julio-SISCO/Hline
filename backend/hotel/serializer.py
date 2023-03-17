@@ -39,3 +39,10 @@ class ChambreEquipementSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChambreEquipement
         fields = ["nom", "image", "hotel", "chambre", "description"]
+        
+        
+        
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = ['id', 'email', 'firstname', 'lastname', 'locality', 'city', 'mobile', 'status', 'hotel']
