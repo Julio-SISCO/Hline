@@ -1,0 +1,57 @@
+<ul class="navbar-nav float-start me-auto">
+  <li *ngIf="!isloggedin" class="nav-item">
+    <a class="nav-link waves-effect waves-dark" href="/auth/login"> Se connecter </a>
+  </li>
+  <li *ngIf="!isloggedin" class="nav-item">
+    <a class="nav-link waves-effect waves-dark" href="/auth/register"> Ajouter un utilisateur </a>
+  </li>
+  <li *ngIf="admin||superadmin" class="nav-item d-none d-md-block" ngbDropdown placement="bottom-end">
+    <a
+      ngbDropdownToggle
+      class="nav-link waves-effect waves-dark"
+      href="javascript:void(0)"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <span>Paramètres</span>
+    </a>
+    <div ngbDropdownMenu>
+      <a class="dropdown-item" href="#" routerLink="/agri-elevage/type-produits">hôtels</a>
+      <a class="dropdown-item" href="#" routerLink="/agri-elevage/categories">Reservation</a>
+      <a class="dropdown-item" href="#" routerLink="/agri-elevage/methodes-livraison">Service connexe</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#" routerLink="/agri-elevage/roles">Role</a>
+      <a class="dropdown-item" href="#" routerLink="/agri-elevage/profile-utilisateur">Profile</a>
+    </div>
+  </li>
+</ul>
+<ul *ngIf="isloggedin" class="navbar-nav float-end">
+  <li class="nav-item" ngbDropdown placement="bottom-end">
+    <a
+      ngbDropdownToggle
+      class="nav-link waves-effect waves-dark pro-pic"
+      href="javascript:void(0)"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <img
+        [src]="assets/images/users/user.png"
+        alt="user"
+        class="rounded-circle"
+        width="31"
+      />
+      <span class="ms-2">User</span>
+    </a>
+    <div class="dropdown-menu-right" ngbDropdownMenu>
+      <a class="dropdown-item" href="javascript:void(0)" (click)="showProfile()"> Profile</a>
+      <a class="dropdown-item" href="javascript:void(0)" (click)="showPanier()"> Mes Activité</a>
+      <a class="dropdown-item" href="javascript:void(0)" routerLink="/agri-elevage/discussions"> Inbiox</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="javascript:void(0)" (click)="update()"> Gestion de compte</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="javascript:void(0)" (click)="logout()"> Logout</a>
+    </div>
+  </li>
+</ul>

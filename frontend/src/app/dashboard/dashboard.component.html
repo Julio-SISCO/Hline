@@ -1,0 +1,27 @@
+<div class="row">
+  <!-- column -->
+  <div class="col-12 text-info text-center mt-3 mb-5">
+    <h1>PANEL D'ADMINISTRATION POUR LA GESTION D'HOTÊL</h1>
+    <h3>Prifitez des mielleures fonctionnalités !</h3>
+      Gérer vos hôtels avec un grande fiabilité, 
+      Une interface simple et adaptée, 
+      Souple administration
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 text-center">
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">  
+      <div ngxSlickItem *ngFor="let image of imagesA" class="slide">  
+        <img src="{{ image.img }}" width="100%" height="300px"> 
+      </div>  
+    </ngx-slick-carousel>
+  </div>
+  <div class="col-lg-6 text-center">
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig2">  
+      <div ngxSlickItem *ngFor="let image of imagesE" class="slide">  
+        <img src="{{ image.img }}" width="100%" height="300px"> 
+      </div>  
+    </ngx-slick-carousel>
+  </div>
+</div>
+

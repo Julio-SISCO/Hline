@@ -1,0 +1,46 @@
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">
+            <img
+            id="profile-img"
+            height="70"
+            width="70"
+            src="./assets/images/logos/ojidev.png"
+            class="profile-img-card"
+            />
+             <b>GESTION D'HÔTEL</b>
+        </a>
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="" class="nav__link" routerLink="/dashboard">
+                        <i class='bx bx-user nav__icon'></i>
+                        <span class="nav__name">Home</span>
+                    </a>
+                </li>
+
+                <li class="nav__item">
+                    <a routerLink="/auth/login" class="nav__link">
+                        <i class='bx bx-book-alt nav__icon'></i>
+                        <span  class="nav__name">Login</span>
+                    </a>
+                </li>
+                <!-- <li class="nav__item">
+                    <a routerLink="/auth/register" class="nav__link">
+                        <i class='bx bx-briefcase-alt nav__icon'></i>
+                        <span class="nav__name">Register</span>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container-fluid mt-5 mb-4">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

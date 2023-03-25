@@ -1,0 +1,28 @@
+<form class="form-horizontal" id="add-form" [formGroup]="createForm" (ngSubmit) = "onCreate()">
+    <div class="modal-header"  >
+        <h4 class="card-title" >Ajout d'un role</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    Les roles permettent une bonne répartition des responsabilités 
+                    au sein d'une entreprise. Ces roles sont attribués aux utilisateurs 
+                    selon leurs fonctions 
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Libellé</label>
+                    <input type="text" formControlName = "libelle" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" routerLink = "../">Retour</button>
+        <button type="submit"  class="btn btn-primary" [disabled]="!createForm.valid">Enregistrer</button>
+    </div>
+</form>
+
+

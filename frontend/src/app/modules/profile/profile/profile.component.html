@@ -1,0 +1,55 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header bg-primary ">
+        <div class="card-title">
+            <h3 class="card-label " style="color: white">Liste des catégories de produit</h3>
+        </div>
+        <div *ngIf="manager||admin||superadmin" class="card-toolbar">
+            <button type="button" class="btn btn-success" routerLink="create">
+                <i class="fa fa-plus p-1" aria-hidden="true"></i>ajouter un profile 
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Profile</h4>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-nowrap table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">#</th>
+                            <th class="text-dark font-medium fs-4">Libelle</th>
+                            <th *ngIf="superadmin" class="text-dark font-medium fs-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let p of profiles; index as i'>
+                            <td>
+                                {{ i + 1 }}
+                            </td>
+                            <td>
+                                {{p.nomProfile}}
+                            </td>
+                            <td *ngIf="manager||admin||superadmin" class="text-center">
+                                <span>
+                                    <a *ngIf="manager||admin||superadmin" (click)="update(p,p.idProf)" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                                        <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" 
+                                            class="svg-icon svg-icon-md svg-icon-primary"></span>
+                                    </a>
+                                    <a *ngIf="superadmin" (click)="delete(p.idProf)" class="btn btn-icon btn-light btn-hover-secondary btn-sm">
+                                        <span
+                                            [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'"
+                                            class="svg-icon svg-icon-md svg-icon-primary">
+                                        </span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  
+  

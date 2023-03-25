@@ -1,0 +1,48 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header bg-primary ">
+        <div class="card-title">
+            <h3 class="card-label " style="color: white">Les Hôtels disponibles dans le panel d'administration</h3>
+        </div>
+        <div *ngIf="admin" class="card-toolbar">
+            <button type="button" class="btn btn-success" routerLink="create">
+                <i class="fa fa-plus p-1" aria-hidden="true"></i>Ajouter un Hôtel
+            </button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-3 col-md-6" *ngFor="let h of hotels;index as i">
+            <div class="card">
+                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">  
+                    <div ngxSlickItem *ngFor="let i of imageHotels" class="slide">  
+                        <img
+                        class="card-img-top img-responsive"
+                        [src]="i?.image?i.image:'assets/images/hline/a1.jpg'"
+                        alt="Card image cap" height="150px"/>
+                    </div>  
+                </ngx-slick-carousel>
+                <ngx-slick-carousel *ngIf="imageHotel.length==0" class="carousel" #slickModal="slick-carousel" [config]="slideConfig">  
+                    <div ngxSlickItem class="slide">  
+                        <img
+                        class="card-img-top img-responsive"
+                        src="assets/images/hline/a1.jpg"
+                        alt="Card image cap"  height="150px"/>
+                    </div>  
+                    <div ngxSlickItem class="slide">  
+                        <img
+                        class="card-img-top img-responsive"
+                        src="assets/images/hline/a2.jpg"
+                        alt="Card image cap"  height="150px"/>
+                    </div> 
+                </ngx-slick-carousel>
+                <div class="card-body">
+                    <h4 class="card-title">{{h.nom}}</h4>
+                    <h6 class="card-title">{{h.adresse}}</h6>
+                    <p class="card-text">
+                    {{h.description.substring(0,90)}}...
+                    </p>
+                    <a class="btn btn-primary" (click)="detail([h.nom,h.adresse,h.description])">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<form class="form-horizontal" id="add-form" [formGroup]="createForm" (ngSubmit) = "onCreate()">
+    <div class="modal-header" style="background-color: white;">
+       <strong><h2 class="card-title" >Ajouter un hôtel</h2></strong> 
+    </div>
+    <div class="modal-body bg-light" style="color: black;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Region</label>
+                    <select id="selectid" formControlName = "region" class="form-control">
+                        <option value="" [selected] =true [disabled]=true>choisir la region</option>
+                        <option *ngFor="let r of regions"
+                            value="{{r}}">
+                            {{r}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" formControlName = "nom" placeholder="Nom de l'hôtel" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>adresse</label>
+                    <input type="text" formControlName = "adresse" placeholder="Adresse de l'hotel" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" formControlName = "email" placeholder="E-mail" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" formControlName = "tel" placeholder="Numéro de téléphone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>ville</label>
+                    <input type="text" formControlName = "ville" placeholder="Ville" class="form-control">
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nombre d'étage</label>
+                    <input type="number" formControlName = "nombre_etage" placeholder="No de l'étage" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Site</label>
+                    <input type="text" formControlName = "site" placeholder="Adresse du site web" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Nombre d'étoiles</label>
+                    <input type="number" formControlName = "note" placeholder="Nombre d'étoiles" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea type="text" formControlName = "description" placeholder="Descriptioin" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>images</label>
+                    <input type="file" id="file" placeholder="joindre un fichier" class="form-control"
+                        formControlName = "images" accept=".jpg,.png,.jpeg,.gif" (change) = "saveImages($event)">
+                        <button type="button" (click)="addImage()" class="btn btn-success float-end">
+                            <i class="fa fa-plus"></i>Add one
+                        </button>
+                </div>
+                <div class="form-group">
+                    <div class="table-responsive">
+                        <table *ngIf="imageListSelected.length>0" class="table table-hover align-middle text-nowrap table-bordered">
+                            <thead>
+                                <tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let im of imageListSelected; index as i'>
+                                    <td>
+                                        {{ i + 1 }}
+                                    </td>
+                                    <td>
+                                        {{im.name}}
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn" type="button" (click)="removeImage(i)"> 
+                                            <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" cacheSVG="true"
+                                                class="svg-icon svg-icon-md svg-icon-primary">
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><br/>
+                    <p>
+                        <!-- <button type="button" (click)="saveImagesForProduct()" class="btn btn-success">
+                            <i class="fa fa-plus"></i> Save All 
+                        </button> -->
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink = "../">Retour</button>
+        <button type="submit"  class="btn btn-primary" [disabled]="!createForm.valid">Enregistrer</button>
+    </div>
+</form>
+
+

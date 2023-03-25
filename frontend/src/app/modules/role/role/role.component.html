@@ -1,0 +1,68 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header bg-primary ">
+        <div class="card-title">
+            <h3 class="card-label " style="color: white">Liste des roles</h3>
+        </div>
+        <div *ngIf="manager||admin||superadmin" class="card-toolbar">
+            <button type="button" class="btn btn-success" routerLink="create">
+                <i class="fa fa-plus p-1" aria-hidden="true"></i>ajouter un role
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="form">
+            <div class="form-group row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                        </div>
+                        <div class="col-lg-6"> 
+                            <input type="text" class="form-control" name="searchText" placeholder="Search"/>
+                            <small class="form-text text-muted"><b>Rechercher</b></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive angular-bootstrap-table">
+            <table class="table table-bordered  table-vertical-center overflow-hidden " id="my-table">
+                <thead class="bg-light">
+                <th class="selection-cell-header text-center" data-row-selection="true">
+                   #
+                </th>
+                <th class="selection-cell-header text-center" data-row-selection="true">
+                    libellé
+                </th>
+                <th *ngIf="manager||admin||superadmin" class="selection-cell-header text-center">
+                    Action
+                </th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of roles;index as i">
+                        <td class="">
+                            {{i+1}}
+                        </td>
+                        <td class="">{{ r?.libelle}}</td>
+                        <td *ngIf="manager||admin||superadmin" class="text-center">
+                            <span>
+                                <a *ngIf="manager||admin||superadmin" (click)="update(r,r.idRole)" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                                    <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" 
+                                        class="svg-icon svg-icon-md svg-icon-primary"></span>
+                                </a>
+                                <a *ngIf="superadmin" (click)="delete(r.idRole)" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                    <span
+                                        [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'"
+                                        class="svg-icon svg-icon-md svg-icon-primary">
+                                    </span>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  
+  
+  

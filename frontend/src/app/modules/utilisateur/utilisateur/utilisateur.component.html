@@ -1,0 +1,79 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header bg-primary ">
+        <div class="card-title">
+            <h3 class="card-label " style="color: white">Liste des comptes d'utilisateur</h3>
+        </div>
+        <div *ngIf="admin || superadmin" class="card-toolbar">
+            <button type="button" class="btn btn-success" routerLink="create">
+                <i class="fa fa-plus p-1" aria-hidden="true"></i>Enregistrer un nouvel utilisateur 
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Gérer les comptes d'utilisateur </h4>
+          <h5 class="card-subtitle text-muted">Comptes</h5>
+          <div class="table-responsive">
+                <table class="table align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">#</th>
+                            <th class="text-dark font-medium fs-4">Nom Prenom Email</th>
+                            <th class="text-dark font-medium fs-4">Profile</th>
+                            <th class="text-dark font-medium fs-4">Enabled</th>
+                            <th class="text-dark font-medium fs-4">adresse</th>
+                            <th class="text-dark font-medium fs-4">telephone</th>
+                            <th class="text-dark font-medium fs-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let u of utilisateurs;index as i'>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center" id="userInfo" (click)="view(u)">
+                                    <img [src]="u.imageUrl!=null?u.imageUrl:'assets/images/users/user.png'" alt="user" width="45" class="rounded-circle">
+                                    <div class="ms-3">
+                                        <h5 class="mb-0 font-medium">{{u.nom}} {{u.prenom}}</h5>
+                                        <span class="text-muted">{{u.email}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fs-4">{{u.profile?.nomProfile}}</td>
+                            <td>
+                                <span class="p-2 bg-{{u.enabled==true?'success':'warning'}} rounded-circle d-inline-block ms-3"></span>
+                                {{u.enabled}}
+                            </td>
+                            
+                            <td>
+                                <h5 class="mb-0 fw-normal">{{u.adresse}}</h5>
+                            </td>
+                            <td>
+                                <h5 class="mb-0 fw-normal">{{u.telephone}}</h5>
+                            </td>
+                            <td>
+                                <a *ngIf="admin||superadmin" (click)="update(u,u.idUti)" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                                    <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" 
+                                        class="svg-icon svg-icon-md svg-icon-primary"></span>
+                                </a>
+                                <a *ngIf="superadmin" (click)="delete(u.idUti)" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                    <span
+                                        [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'"
+                                        class="svg-icon svg-icon-md svg-icon-primary">
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>              
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #userInfo{
+        cursor: pointer;
+    }
+</style>

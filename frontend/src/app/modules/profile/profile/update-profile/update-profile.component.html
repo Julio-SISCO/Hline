@@ -1,0 +1,22 @@
+<div >
+    <div>
+        <form class="form-horizontal" id="add-form" [formGroup]="updateForm" (ngSubmit)="update()">
+            <div class="modal-header"  >
+                <h4 class="card-title" >Modifier le nom du profile</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-xl-6" >
+                        <label class="control-label">Nom</label>
+                        <input type="text" [ngModel]="currentProfile.nomProfile" class="form-control" formControlName="nom" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Fermer</button>
+                <button type="submit" [disabled]="updateForm.invalid" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+

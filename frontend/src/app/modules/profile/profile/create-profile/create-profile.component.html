@@ -1,0 +1,27 @@
+<form class="form-horizontal" id="add-form" [formGroup]="createForm" (ngSubmit) = "onCreate()">
+    <div class="modal-header"  >
+        <h4 class="card-title" >Enregistrer un profile</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    Pour une bonne expérience et une bonne flexibilité dans la gestion des utilisateurs, 
+                    il exite différents profiles qui sont attribué à chaque nouvel utilisateur
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" formControlName = "nom" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" routerLink = "../">Retour</button>
+        <button type="submit"  class="btn btn-primary" [disabled]="!createForm.valid">Enregistrer</button>
+    </div>
+</form>
+
+

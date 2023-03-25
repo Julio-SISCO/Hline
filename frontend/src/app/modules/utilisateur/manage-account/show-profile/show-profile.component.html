@@ -1,0 +1,18 @@
+<div >
+    <div>
+        <div class="modal-header"  >
+            <h4 class="card-title" >Profile</h4>
+        </div>
+        <div class="modal-body text-center">
+            <div class="row">
+                <div *ngIf="userLogged.profile" class="form-group text-info align-content-center" >
+                    <h3>Vous avez le profile <b>{{userLogged.profile?.nomProfile}}</b></h3>
+                </div>
+                <div *ngIf="!userLogged.profile" class="form-group text-info align-content-center" >
+                    <h3>Vous avez le profile : <b>Invité</b></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

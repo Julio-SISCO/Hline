@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+<style>
+    
+</style>
+{%  block main-content %}
+    <form action="" class="form">
+        <div class="div-container">
+            <div class="div-form">
+                {% for ch in champs %}
+                {{ch.label}}
+                {{ch}}
+                {% endfor %}
+            </div>
+            <div class="div-form1">
+                <button class="btn btn-sm btn-light bg-white " type="button" id="dropdownMenuDate2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name="submit">Associer des images</button>
+            </div>
+        </div>
+    </form>
+{% endblock main-content %}
